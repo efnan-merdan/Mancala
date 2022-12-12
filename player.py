@@ -3,16 +3,17 @@ import math
 
 class Player:
 
-    def __init__(self, depthLimit, isPlayer):
+    def __init__(self, depthLimit, isPlayer1):
         self.depthLimit = depthLimit
-        self.isPlayer = isPlayer
+        self.isPlayer1 = isPlayer1
 
     def findMove(self, board):
 
         def findMoveHelper(currentBoard, depth, alpha, beta, isMax):
 
             if currentBoard.isOver():
-                return (-math.inf if isMax else math.inf, -1)
+                return (board.score(), -1)
+
             elif depth == 0:
                 return (self.heuristic(board), -1)
 
@@ -25,6 +26,8 @@ class Player:
             else:
                 bestScore = math.inf
                 shouldReplace = lambda x: x < bestScore
+
+
 
             moveForBestScore = -1
 
@@ -47,7 +50,8 @@ class Player:
 
             return (bestScore, moveForBestScore)
 
-        score, move = findMoveHelper(board, self.depthLimit, -math.inf, math.inf, self.isPlayer)
+        score, move = findMoveHelper(board, self.depthLimit, -math.inf, math.inf, self.isPlayer1)
+        return move
 
     def heuristic(self, board):
 

@@ -19,6 +19,8 @@ def simulateLocalGame(startBoard, p1, p2):
         print("----------- Move Number " + str(board.numMoves) + " -------------\n")
         board.print()
 
+        isPlayer1 = not isPlayer1
+
     print("Final Score")
 
     print(board.score())
@@ -32,3 +34,4 @@ if __name__ == "__main__":
     board = Board()
 
     simulateLocalGame(board, p1, p2)
+
